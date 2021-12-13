@@ -1,1 +1,131 @@
-#can you see this
+# Global fallback
+* @quadpay/engineering-team
+
+# Shared
+services/admin/ @quadpay/engineering-team
+
+# Customer Squad
+azure-functions/event-hub-middleware-azure-functions/ @quadpay/customer-quadrant-be
+services/cash-rewards/ @quadpay/customer-quadrant-be
+services/customers/ @quadpay/customer-quadrant-be
+services/customer-preferences/ @quadpay/customer-quadrant-be
+services/login/ @quadpay/customer-quadrant-be @quadpay/checkout
+services/merchant-search/ @quadpay/customer-quadrant-be
+services/notifications/ @quadpay/customer-quadrant-be
+services/plaid-gateway/ @quadpay/customer-quadrant-be
+services/promotions/ @quadpay/customer-quadrant-be
+services/referrals/ @quadpay/customer-quadrant-be
+
+tools/customer/ @quadpay/customer-quadrant-be
+
+# Data Squad
+services/reporting-source-eventstore/ @quadpay/data
+
+# Fraud & Risk Squad - Core Services
+services/decision-engine/ @quadpay/risk @quadpay/fraud
+services/risk-manager/ @quadpay/risk @quadpay/fraud
+tools/decision-engine/ @quadpay/risk @quadpay/fraud
+libraries/decision-engine/ @quadpay/risk @quadpay/fraud
+azure-functions/decision-engine-azure-functions/ @quadpay/risk @quadpay/fraud
+jobs/decision-engine-jobs/ @quadpay/risk @quadpay/fraud
+
+# Fraud & Risk Squad - Others
+services/analytics/ @quadpay/risk @quadpay/fraud @quadpay/customer
+
+# Fraud & Risk Squad - Machine Learning
+services/experian-features/ @quadpay/risk
+services/risk-model/ @quadpay/risk
+services/risk-model-2/ @quadpay/risk
+
+# Fraud & Risk Squad - Provider Gateways
+libraries/identity-providers/cognito-package @quadpay/fraud
+services/provider-gateways/ @quadpay/risk @quadpay/fraud
+services/provider-mocks/ @quadpay/risk @quadpay/fraud
+
+# Fraud & Risk Squad - Provider Gateways (SG)
+services/provider-gateways/*/QuadPay.ProviderGateways.Experian.Singapore*/ @quadpay/risk @quadpay/new-markets
+services/provider-mocks/*/QuadPay.ProviderMocks.Experian.Singapore*/ @quadpay/risk @quadpay/new-markets
+services/provider-gateways/*/QuadPay.ProviderGateways.SingpassMyInfo*/ @quadpay/fraud @quadpay/new-markets
+services/provider-mocks/*/QuadPay.ProviderGateways.SingpassMyInfo*/ @quadpay/fraud @quadpay/new-markets
+
+# Infrastructure Squad
+services/auth0-mock/ @quadpay/infrastructure
+services/autoscaler/ @quadpay/infrastructure
+build/ @quadpay/infrastructure
+kubernetes/ @quadpay/infrastructure
+libraries/telemetry/ @quadpay/infrastructure
+## Match all helm values files
+**/helm/** @quadpay/infrastructure
+k6/azure-pipelines-k6.yml
+.github/
+
+# Merchant Squad
+services/merchants/ @quadpay/merchant
+services/monolith-eventstore-middleware/ @quadpay/merchant @quadpay/checkout
+jobs/merchants-jobs/ @quadpay/merchant
+eventstore/projections/merchantOrders/ @quadpay/merchant @quadpay/checkout
+jobs/invoicing/ @quadpay/merchant
+services/merchant-invoicing/ @quadpay/merchant
+
+# Checkout Squad
+services/gateway/ @quadpay/checkout
+services/legacy-orders-middleware/ @quadpay/checkout
+services/orders/ @quadpay/checkout
+
+# Payments Quadrant
+## Shared
+services/accounting-projections/ @quadpay/payments
+services/monolith-read-model/ @quadpay/payments @quadpay/engineering-team
+services/legacy-orders/ @quadpay/payments
+services/customer-portal/src/QuadPay.CustomerPortal.BFF/ @quadpay/payments
+services/customer-portal/test/QuadPay.CustomerPortal.BFF.Test/ @quadpay/payments
+services/customer-portal/src/QuadPay.CustomerPortal.Projections/ @quadpay/payments
+services/customer-portal/test/QuadPay.CustomerPortal.Projections.Test/ @quadpay/payments
+
+## Purchasing Squad
+jobs/stripe-webhooks-projections/ @quadpay/purchasing
+services/wallet/ @quadpay/purchasing
+jobs/stripe-issuing-jobs/ @quadpay/purchasing
+
+## Repayment Squad
+services/payment-plans/ @quadpay/repayment
+services/payment-sources/ @quadpay/repayment
+services/customer-funding-sources/ @quadpay/repayment
+
+# k6 Libraries
+## Match all files in all subdirectories of k6, but not top-level files
+k6/**/** @quadpay/engineering-team
+
+# k6 Tests
+k6/Wallet*.js @quadpay/purchasing
+k6/VFI*.js @quadpay/checkout
+k6/QuadPayJsLifecycle.js @quadpay/checkout
+k6/Merchant*.js @quadpay/merchant
+k6/Orders*.js @quadpay/checkout
+k6/MerchantRisk*.js @quadpay/fraud @quadpay/risk
+k6/IdentityVerification*.js @quadpay/fraud @quadpay/risk
+k6/CashReward*.js @quadpay/customer-quadrant-be
+
+# Public API Approval Required
+services/gateway/src/**/*Controller.cs @albernhagen @rsnj
+services/legacy-orders-middleware/src/**/*Controller.cs @albernhagen @rsnj
+
+# Event Schema - Senior Staff approval needed
+services/payment-plans/src/QuadPay.PaymentPlans/Domain/Aggregate/Events/ @quadpay/domain-event-owners
+services/payment-sources/src/QuadPay.PaymentSources/PaymentCardDomain/Aggregate/Events/ @quadpay/domain-event-owners
+services/wallet/src/QuadPay.Wallet/PurchaseLedgers/Events/ @quadpay/domain-event-owners
+services/customers/src/QuadPay.Customers/Customers/Domain/Events/ @quadpay/domain-event-owners
+services/decision-engine/src/QuadPay.DecisionEngine/MerchantRiskConfigs/Domain/Events/ @quadpay/domain-event-owners
+services/merchants/src/QuadPay.Merchants/Merchants/Domain/Events/ @quadpay/domain-event-owners
+services/orders/src/QuadPay.Orders/Orders/Domain/Events/ @quadpay/domain-event-owners
+services/cash-rewards/src/QuadPay.CashRewards/CashRewards/Domain/Events/ @quadpay/domain-event-owners
+services/merchant-invoicing/src/QuadPay.MerchantInvoicing/Invoices/Events/ @quadpay/domain-event-owners
+services/plaid-gateway/src/QuadPay.PlaidGateway/Gateway/Events/ @quadpay/domain-event-owners
+services/referrals/src/QuadPay.Referrals/Customer/Domain/Events/ @quadpay/domain-event-owners
+services/risk-manager/src/QuadPay.RiskManager/CustomerRiskConfigs/Domain/Events/ @quadpay/domain-event-owners
+services/customer-preferences/src/QuadPay.CustomerPreferences/Preferences/Events/ @quadpay/domain-event-owners
+services/partners/src/QuadPay.PartnersGateway/Accounts/Linking/Domain/Events/ @quadpay/domain-event-owners
+services/customer-funding-sources/src/QuadPay.CustomerFundingSources.Domain/Events/ @quadpay/domain-event-owners
+
+# BNPLaaS
+services/partners/ @quadpay/bnplaas
