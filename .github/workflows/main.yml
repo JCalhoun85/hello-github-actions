@@ -22,4 +22,4 @@ jobs:
       - name: job name
         if: github.event.review.state == 'approved'
         run: |
-          echo "approved"
+          echo {{ github.event.pull_request.node_id }}
