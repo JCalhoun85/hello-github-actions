@@ -28,4 +28,3 @@ jobs:
           echo "Job=$(${{ github.event.pull_request.node_id }})" >> $GITHUB_ENV
       - name: Save name
         run: echo ${{ env.Job }}
-
