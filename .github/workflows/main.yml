@@ -11,12 +11,13 @@
 #         name: hot sauce
       
 on:
-  pull_request:
-    branches:
-      - main
-  pull_request_review:
-    types: [submitted]
-
+  discussion_comment:
+    types: [created, deleted]
+  # pull_request:
+  #   branches:
+  #     - main
+  # pull_request_review:
+  #   types: [submitted]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,3 +29,4 @@ jobs:
           echo "Job=$(${{ github.event.pull_request.node_id }})" >> $env:GITHUB_ENV
       - name: SaveName
         run: echo ${{ env.Job }}
+
