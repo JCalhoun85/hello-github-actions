@@ -30,5 +30,6 @@ jobs:
           echo JOB =${{ github.event.pull_request.node_id }} >> .job
       - name: pring  
         run: |
-          cat .job
+          echo '${{ toJson(github.event.pull_request.requested_reviewers) }}' | jq '. | length'
+          
 
