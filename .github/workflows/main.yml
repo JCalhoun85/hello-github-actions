@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: job name
-        if: github.event.review.state == 'approved'
+        #if: github.event.review.state == 'approved'
         run: |
           echo "Job=$(${{ github.event.pull_request.node_id }})" >> $env:GITHUB_ENV
       - name: SaveName
