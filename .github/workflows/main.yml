@@ -25,4 +25,6 @@ jobs:
       - name: job name
         if: github.event.review.state == 'approved'
         run: |
-          echo ${{ github.event.pull_request.node_id }}
+          echo "Job=$(${{ github.event.pull_request.node_id }})"" >> $GITHUB_ENV
+      - name: Save name
+        run: echo ${{ env.Job }}
