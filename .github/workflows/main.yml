@@ -26,7 +26,6 @@ jobs:
       - name: job name
         #if: github.event.review.state == 'approved'
         run: |
-          touch .job
           echo JOB =${{ github.event.pull_request.node_id }} >> .job
       - name: pring  
         run: |
